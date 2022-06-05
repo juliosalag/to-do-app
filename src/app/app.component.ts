@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -16,8 +16,13 @@ export class AppComponent {
 
   }
 
+  displayName = '';
+
   ngOnInit(){
     this.login();
+    this.userService.getUser().subscribe(
+      user => { this.displayName = user.name }
+    );
   }
 
   login(){
